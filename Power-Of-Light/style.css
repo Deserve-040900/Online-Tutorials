@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans', cursive;
+}
+section {
+    position: relative;
+    min-height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+section h2 {
+    color: #fff;
+    font-size: 15em;
+    cursor: default;
+}
+section h3 {
+    color: #fff;
+    font-size: 10em;
+    cursor: default;
+}
+section h3:first-child {
+    color: rgb(255, 0, 0);
+    align-self: flex-start;
+}
+section h3:last-child {
+    color: rgb(4, 0, 255);
+    align-self: flex-end;
+}
+.light {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(circle at var(--x) var(--y), transparent 10%, rgba(0, 0, 0, 0.95) 20%);
+}

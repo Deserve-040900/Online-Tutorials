@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Of Light | Html CSS & Vanilla Javascript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section> <!-- Complete -->
+        <h3>Tomorrow</h3>
+        <h2>Light</h2>
+        <h3>Future</h3>
+    </section>
+    <div class="light"></div>
+
+    <script type="text/javascript">
+        var pos = document.documentElement;
+        pos.addEventListener("mousemove", e => {
+            pos.style.setProperty("--x", e.clientX + 'px');
+            pos.style.setProperty("--y", e.clientY + 'px');
+        });
+    </script>
+</body>
+</html>

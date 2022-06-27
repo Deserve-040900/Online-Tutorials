@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+    background: #000;
+}
+.container span {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 20px;
+    min-height: 20px;
+}
+.container span::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: 4s;
+    opacity: 0;
+    background: url(BU.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+}
+.container span:hover::before {
+    width: 1000%;
+    height: 1000%;
+    transition: 0s;
+    opacity: 1;
+}
