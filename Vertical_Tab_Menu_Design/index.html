@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Tab Menu Design</title>
+    <script src="https://kit.fontawesome.com/111ce1094e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navigation"> <!-- completely -->
+        <ul>
+            <li class="list active" data-color="#ff2848">
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-house-chimney"></i></span>
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <li class="list" data-color="#ff9428">
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-user-large"></i></span>
+                    <span class="title">About</span>
+                </a>
+            </li>
+            <li class="list" data-color="#ffed28">
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-address-card"></i></span>
+                    <span class="title">Resume</span>
+                </a>
+            </li>
+            <li class="list" data-color="#53ff28">
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-business-time"></i></span>
+                    <span class="title">Experience</span>
+                </a>
+            </li>
+            <li class="list" data-color="#2869ff">
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-images"></i></span>
+                    <span class="title">Portfolio</span>
+                </a>
+            </li>
+            <li class="list" data-color="#ea28ff">
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-phone"></i></span>
+                    <span class="title">Contact</span>
+                </a>
+            </li>
+            <div class="indicator"></div>
+        </ul>
+    </div>
+
+    <script>
+        // add active class on hovered item
+        let List = document.querySelectorAll('li');
+        for (let i = 0; i < List.length; i++) {
+            List[i].onmouseover = function(){
+                let j = 0;
+                while (j < List.length) {
+                    List[j++].className = 'list';
+                }
+                List[i].className = 'list active';
+            };            
+        }
+
+        // change body color according to indicator
+        List.forEach(ele => {
+            ele.addEventListener('mouseenter', function(event) {
+                let bg = document.querySelector('body');
+                let color = event.target.getAttribute('data-color');
+
+                bg.style.backgroundColor = color;
+            })
+        })
+    </script>
+</body>
+</html>
