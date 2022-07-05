@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="loading();">
+    <div id="greeting" class="sayHi">
+        <div id="cauchao"></div>
+    </div>
+    <section>
+        <div id="thu" class="thu"></div>
+        <div id="date" class="date">
+            <div id="day"></div>
+            <div id="month"></div>
+            <div id="year"></div>
+        </div>
+        <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+    </section>
+
+    <script>
+        function loading()
+        {
+            alert("Lịch Vạn Niên xin chào! Chúc bạn Nhiều sức khỏe và thành Công trong cuộc sống.");
+
+            if (h>0 && h<=6)
+                document.getElementById("cauchao").innerHTML =
+                "Chào buổi sáng ! Bỏ ăn Sáng thì không tốt cho sức khỏe xíu nào.";
+            else if (h>6 && h<=12)
+                document.getElementById("cauchao").innerHTML = 
+                "Chào buổi trưa ! Bạn đã ăn Trưa chưa, nhớ nghỉ ngơi đúng giờ nhé.";
+            else if (h>12 && h<=18)
+                document.getElementById("cauchao").innerHTML =
+                "Chào buổi chiều ! Bạn nên ăn cơm trước 18h Tối nhoa.";
+            else
+                document.getElementById("cauchao").innerHTML =
+                "Chào buổi tối ! Ăn khuya sẽ khiến bạn Tăng cân đóa.";
+
+            // Hiển thị ra trình duyệt
+            document.getElementById('thu').innerHTML = week(D);
+            document.getElementById('day').innerHTML = "0" + d + "/";
+            document.getElementById('month').innerHTML = "0" + M + "/";
+            document.getElementById('year').innerHTML = y;
+            showTime();
+        }
+
+        // Lấy Object ngày hiện tại
+        var today = new Date();
+
+        // Giờ, phút, giây hiện tại
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        var ms = today.getMilliseconds();
+
+        // Chuyển đổi sang dạng 01, 02, 03
+        // h = checkTime(h);
+        // m = checkTime(m);
+        // s = checkTime(s);
+
+        // thứ, ngày, tháng, năm hiện tại
+        var d = today.getDate();
+        var M = today.getMonth() + 1;
+        var y = today.getFullYear();
+
+        var D = new Date(y, M-1, d);
+
+        // Dùng hàm setTimeout để thiết lập gọi lại 0.5 giây / lần
+        var t = setTimeout(function() {
+            startTime();
+        }, 500);
+
+        // Hàm này có tác dụng chuyển những số bé hơn 10 thành dạng 01, 02, 03, ...
+        function checkTime(i) 
+        {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+        function week(d)
+		{
+			var thu="";
+			switch (d.getDay())
+			{
+				case 0: thu="Chủ nhật"; break;
+				case 1: thu="Thứ hai"; break;
+				case 2: thu="Thứ ba"; break;
+				case 3: thu="Thứ tư"; break;
+				case 4: thu="Thứ năm"; break;
+				case 5: thu="Thứ sáu"; break;
+				case 6: thu="Thứ bảy"; break;
+			}
+			return thu;
+		}
+
+        function showTime(){
+            var session = "AM";
+            
+            if(h > 23){
+                h = 0;
+            }
+            
+            if(h > 12){
+                session = "PM";
+                s++;
+                if(s > 60) {
+                    s = 0;
+                    m++;
+                    if(m > 60) {
+                        m = 0;
+                        h++;
+                    }else { m++; }
+                }else { s++; }
+            }
+            
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+            
+            var time = h + ":" + m + ":" + s + " " + session;
+            document.getElementById("MyClockDisplay").innerText = time;
+            document.getElementById("MyClockDisplay").textContent = time;
+            
+            setTimeout(showTime, 1000);            
+        }
+    </script>
+</body>
+</html>

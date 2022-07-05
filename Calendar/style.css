@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+body {
+    background: #333;
+    color: #fff;
+}
+.sayHi {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    background: linear-gradient(#ff2b2b, #2b95ff);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px 20px;
+    text-align: center;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+.sayHi div {
+    animation: animate1 20s linear infinite;
+    animation-delay: -20s;
+}
+@keyframes animate1 {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+section .thu {
+    line-height: 45px;
+    font-size: 38px;
+    font-weight: 600;
+}
+section .date {
+    line-height: 45px;
+    font-size: 38px;
+    font-weight: 400;
+    display: flex;
+}
+section .clock {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #17D4FE;
+    filter: drop-shadow(0 0 20px #17D4FE) drop-shadow(0 0 60px #17D4FE);
+    font-size: 50px;
+    font-weight: 800;
+    letter-spacing: 7px;
+    margin: 20px 0;
+}
