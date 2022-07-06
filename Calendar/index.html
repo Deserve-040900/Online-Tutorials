@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javascript</title>
+    <title>Javascript timeKeeper</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="loading();">
@@ -12,11 +12,13 @@
         <div id="cauchao"></div>
     </div>
     <section>
-        <div id="thu" class="thu"></div>
-        <div id="date" class="date">
-            <div id="day"></div>
-            <div id="month"></div>
-            <div id="year"></div>
+        <div class="calendar">
+            <div id="date" class="date">
+                <div id="month" class="month"></div>
+                <div id="year" class="year"></div>
+                <div id="day" class="day"></div>
+            </div>
+            <div id="thu" class="thu"></div>
         </div>
         <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
     </section>
@@ -26,13 +28,13 @@
         {
             alert("Lịch Vạn Niên xin chào! Chúc bạn Nhiều sức khỏe và thành Công trong cuộc sống.");
 
-            if (h>0 && h<=6)
+            if (h>3 && h<=9)
                 document.getElementById("cauchao").innerHTML =
                 "Chào buổi sáng ! Bỏ ăn Sáng thì không tốt cho sức khỏe xíu nào.";
-            else if (h>6 && h<=12)
+            else if (h>9 && h<=14)
                 document.getElementById("cauchao").innerHTML = 
                 "Chào buổi trưa ! Bạn đã ăn Trưa chưa, nhớ nghỉ ngơi đúng giờ nhé.";
-            else if (h>12 && h<=18)
+            else if (h>14 && h<=18)
                 document.getElementById("cauchao").innerHTML =
                 "Chào buổi chiều ! Bạn nên ăn cơm trước 18h Tối nhoa.";
             else
@@ -41,8 +43,8 @@
 
             // Hiển thị ra trình duyệt
             document.getElementById('thu').innerHTML = week(D);
-            document.getElementById('day').innerHTML = "0" + d + "/";
-            document.getElementById('month').innerHTML = "0" + M + "/";
+            document.getElementById('day').innerHTML = checkTime(d);
+            document.getElementById('month').innerHTML = "Tháng " + checkTime(M);
             document.getElementById('year').innerHTML = y;
             showTime();
         }
@@ -57,9 +59,9 @@
         var ms = today.getMilliseconds();
 
         // Chuyển đổi sang dạng 01, 02, 03
-        // h = checkTime(h);
-        // m = checkTime(m);
-        // s = checkTime(s);
+        h = checkTime(h);
+        m = checkTime(m);
+        s = checkTime(s);
 
         // thứ, ngày, tháng, năm hiện tại
         var d = today.getDate();
@@ -101,18 +103,13 @@
         function showTime(){
             var session = "AM";
             
-            if(h > 23){
-                h = 0;
-            }
-            
             if(h > 12){
                 session = "PM";
-                s++;
-                if(s > 60) {
-                    s = 0;
+                if(s >= 59) {
+                    s = s - 59;
                     m++;
-                    if(m > 60) {
-                        m = 0;
+                    if(m >= 59) {
+                        m = m - 59;
                         h++;
                     }else { m++; }
                 }else { s++; }
@@ -126,7 +123,7 @@
             document.getElementById("MyClockDisplay").innerText = time;
             document.getElementById("MyClockDisplay").textContent = time;
             
-            setTimeout(showTime, 1000);            
+            setTimeout(showTime, 970);            
         }
     </script>
 </body>

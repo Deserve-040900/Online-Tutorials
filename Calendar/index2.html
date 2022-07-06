@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript</title>
+    <link rel="stylesheet" href="style2.css" />
+  </head>
+  <body onload="loading();">
+    <div id="greeting" class="sayHi">
+      <div id="cauchao"></div>
+    </div>
+    <section>
+      <div class="calendar">
+        <div id="date" class="row date">
+          <div id="month" class="month"></div>
+          <div id="year" class="year"></div>
+        </div>
+        <div id="day" class="row day"></div>
+        <div id="thu" class="row thu"></div>
+      </div>
+      <div class="metmoi">
+        <div class="row enterGroup">
+          <div class="column">
+            Ngày <input type="text" name="ngay" id="ngay" size="5" />
+          </div>
+          <div class="column">
+            Tháng <input type="text" name="thang" id="thang" size="5" />
+          </div>
+          <div class="column">
+            Năm <input type="text" name="nam" id="nam" size="5" />
+          </div>
+        </div>
+        <div id="error" class="err"></div>
+      </div>
+      <div class="btnGroup">
+        <input
+          type="button"
+          value=" Print "
+          class="btn-print"
+          onclick="printCalendar(ngay.value, thang.value, nam.value)"
+        />
+        <input
+          type="button"
+          value=" Reset "
+          class="btn-reset"
+          onclick="resetCalendar(ngay.value, thang.value, nam.value)"
+        />
+      </div>
+    </section>
+
+    <script>
+        const thu = document.getElementById('thu');
+        const day = document.getElementById('day');
+        const month = document.getElementById('month');
+        const year = document.getElementById('year');
+        const err = document.getElementById('error');
+        const ngay = document.getElementById("ngay");
+        const thang = document.getElementById("thang");
+        const nam = document.getElementById("nam");
+
+      function loading() {
+        alert(
+          "Lịch Vạn Niên xin chào! Chúc bạn Nhiều sức khỏe và thành Công trong cuộc sống."
+        );
+
+        if (h > 3 && h <= 9)
+          document.getElementById("cauchao").innerHTML =
+            "Chào buổi sáng ! Bỏ ăn Sáng thì không tốt cho sức khỏe xíu nào.";
+        else if (h > 9 && h <= 14)
+          document.getElementById("cauchao").innerHTML =
+            "Chào buổi trưa ! Bạn đã ăn Trưa chưa, nhớ nghỉ ngơi đúng giờ nhé.";
+        else if (h > 14 && h <= 18)
+          document.getElementById("cauchao").innerHTML =
+            "Chào buổi chiều ! Bạn nên ăn cơm trước 18h Tối nhoa.";
+        else
+          document.getElementById("cauchao").innerHTML =
+            "Chào buổi tối ! Ăn khuya sẽ khiến bạn Tăng cân đóa.";
+
+        // Hiển thị ra trình duyệt
+        thu.innerHTML = week(D);
+        day.innerHTML = checkTime(d);
+        month.innerHTML = "Tháng " + checkTime(M);
+        year.innerHTML = y;
+      }
+
+      // Lấy Object ngày hiện tại
+      var today = new Date();
+
+      // Giờ, phút, giây hiện tại
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+
+      // thứ, ngày, tháng, năm hiện tại
+      var d = today.getDate();
+      var M = today.getMonth() + 1;
+      var y = today.getFullYear();
+
+      var D = new Date(y, M - 1, d);
+
+      // Dùng hàm setTimeout để thiết lập gọi lại 0.5 giây / lần
+      var t = setTimeout(function () {
+        startTime();
+      }, 500);
+
+      // Hàm này có tác dụng chuyển những số bé hơn 10 thành dạng 01, 02, 03, ...
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+      }
+      // Hàm kiểm tra năm nhuận
+      function checkYear(y) {
+        // if (y % 4 == 0 && y % 100 != 0)
+        if (y % 400 == 0) {
+          return true;
+        }
+        return false;
+      }      
+      // Hàm trả về số ngày trong tháng thuộc năm cho trước
+      function checkMonth(m, y) {
+        var num;
+        switch (m) {
+          case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            num = 31;
+            break;
+
+          case 4: case 6: case 9: case 11:
+            num = 30;
+            break;
+
+          case 2:
+            if(checkYear(y) == true) {
+                num = 29;
+            } else {
+                num = 28;
+            }
+            break;
+        }
+        return num;
+      }
+      // Hàm kiểm tra ngày dd/mm/yyyy cho trước có phải là ngày hợp lệ
+      function checkDMY(ng, t, n) {
+        // Kiểm tra năm
+        if (n < 0)
+        {
+            return false;
+        }
+
+        // Kiểm tra tháng
+        if (t < 1 || t > 12)
+        {
+            return false;
+        }
+
+        // Kiểm tra ngày
+        if (ng < 1 || ng > checkMonth(t, n))
+        {
+            return false;
+        }
+
+        return true; // Trả về trạng thái cuối cùng...
+      }
+
+      function week(d) {
+        var thu = "";
+        switch (d.getDay()) {
+          case 0: thu = "Chủ nhật";
+            break;
+          case 1: thu = "Thứ hai";
+            break;
+          case 2: thu = "Thứ ba";
+            break;
+          case 3: thu = "Thứ tư";
+            break;
+          case 4: thu = "Thứ năm";
+            break;
+          case 5: thu = "Thứ sáu";
+            break;
+          case 6: thu = "Thứ bảy";
+            break;
+        }
+        return thu;
+      }
+
+      function printCalendar(pd, pm, py) {
+        vngay = new Date(py, pm-1, pd);
+        if (checkDMY(pd, pm, py) == true) {
+            day.innerHTML = pd;
+            month.innerHTML = "Tháng " + pm;
+            year.innerHTML = py;
+            thu.innerHTML = week(vngay);
+        } else {
+            err.innerHTML = "Giá trị Ngày không hợp lệ !!! Mời bạn vui lòng nhập lại.";
+            ngay.value = "";
+            thang.value = "";
+            nam.value = "";
+            ngay.focus();
+        }
+        // switch (pm) {
+        //   case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+        //     if (pd > 0 && pd <= 31) {
+        //       return true;
+        //       break;
+        //     } else {
+        //         err.innerHTML = "Giá trị Ngày không hợp lệ !!! Mời bạn vui lòng nhập lại.";
+        //       break;
+        //     }
+
+        //   case 4: case 6: case 9: case 11:
+        //     if (pd <= 30 && pd > 0) {
+        //         return true;
+        //       break;
+        //     } else {
+        //         err.innerHTML = "Giá trị Ngày không hợp lệ !!! Mời bạn vui lòng nhập lại.";
+        //       break;
+        //     }
+
+        //   case 2:
+        //     if(checkYear(py) == true){
+        //         if (pd <= 29 && pd > 0) {
+        //             return true;
+        //             break;
+        //         }
+        //     }else{
+        //         if (pd <= 28 && pd > 0) {
+        //             return true;
+        //             break;
+        //         }else {
+        //             err.innerHTML = "Giá trị Ngày không hợp lệ !!! Mời bạn vui lòng nhập lại.";
+        //         break;
+        //         }
+        //     }
+        // }
+        // day.innerHTML = pd;
+        // month.innerHTML = "Tháng " + pm;
+        // year.innerHTML = py;
+        // thu.innerHTML = week(vngay);
+      }
+
+      function resetCalendar(png, pt, pn) {
+        day.innerHTML = d;
+        month.innerHTML = "Tháng " + M;
+        year.innerHTML = y;
+        thu.innerHTML = week(D);
+        ngay.value = "";
+        thang.value = "";
+        nam.value = "";
+        ngay.focus();
+      }
+    </script>
+  </body>
+</html>

@@ -14,7 +14,7 @@ body {
     position: relative;
     width: 100%;
     height: fit-content;
-    background: linear-gradient(#ff2b2b, #2b95ff);
+    background: linear-gradient(45deg, #fe256d, #ffc107);
     color: #fff;
     font-size: 15px;
     font-weight: 500;
@@ -23,8 +23,8 @@ body {
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
 .sayHi div {
-    animation: animate1 20s linear infinite;
-    animation-delay: -40s;
+    animation: animate1 30s linear infinite;
+    animation-delay: -10s;
 }
 @keyframes animate1 {
     0% {
@@ -48,17 +48,18 @@ section .calendar {
     filter: drop-shadow(0 0 20px #17D4FE) drop-shadow(0 0 40px #17D4FE);
     width: 300px;
     height: 350px;
+    margin-bottom: 50px;
 }
 section .calendar .thu {
-    position: absolute;
-    top: 70%;
-    left: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25%;
     font-size: 45px;
     font-weight: 700;
 }
 section .calendar .date {
     display: flex;
-    flex-direction: column;
 }
 section .calendar .date .month {
     float: left;
@@ -73,22 +74,56 @@ section .calendar .date .year {
     font-size: 25px;
     font-weight: 400;
 }
-section .calendar .date .day {
-    position: absolute;
-    top: 20%;
-    left: 23%;
+section .calendar .day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 130px;
     font-weight: 500;
 }
-section .clock {
-    position: relative;
-    top: 50%;
-    left: 12%;
-    transform: translateX(-50%) translateY(-50%);
-    color: #17D4FE;
-    filter: drop-shadow(0 0 20px #17D4FE) drop-shadow(0 0 60px #17D4FE);
-    font-size: 50px;
-    font-weight: 800;
-    letter-spacing: 7px;
-    margin: 100px 0 0 0;
+section .enterGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+    width: 500px;
+    font-size: 18px;
+}
+section .enterGroup input {
+    font-size: 15px;
+    padding: 0 5px;
+    border: none;
+}
+section .err {
+    color: #ff2b2b;
+    text-align: center;
+}
+section .btn-print,
+section .btn-reset {
+    width: 100px;
+    height: 40px;
+    padding: 7px 0;
+    margin: 30px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.3s ease;
+    background: #e7a5ff;
+}
+/* section .btn-print:hover ,
+section .btn-reset:hover {
+    transform: scale(1.07);
+} */
+section .btn-print:hover {
+    background: #2bff55;
+    color: #fff;
+    /* filter: drop-shadow(0 0 10px #2bff55) drop-shadow(0 0 30px #2bff55); */
+    transform: scale(1.07);
+}
+section .btn-reset:hover {
+    background: #f1ff2b;
+    color: #fff;
+    /* filter: drop-shadow(0 0 10px #f1ff2b) drop-shadow(0 0 30px #f1ff2b); */
+    transform: scale(1.07);
 }
