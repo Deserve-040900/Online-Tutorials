@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="navigation"> <!-- completely -->
+    <div class="navigation"> <!-- Vertical_Tab_Menu_Design -->
         <ul>
             <li class="list active" data-color="#ff2848">
                 <a href="#">
@@ -51,6 +51,48 @@
         </ul>
     </div>
 
+    <div class="navigate"> <!-- Curve Outside Effects -->
+        <ul>
+            <li class="list2 active">
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-house-chimney"></i></span>
+                    <span class="text">Home</span>
+                </a>
+            </li>
+            <li class="list2">
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-user-large"></i></span>
+                    <span class="text">About</span>
+                </a>
+            </li>
+            <li class="list2">
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-address-card"></i></span>
+                    <span class="text">Resume</span>
+                </a>
+            </li>
+            <li class="list2">
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-business-time"></i></span>
+                    <span class="text">Profile</span>
+                </a>
+            </li>
+            <li class="list2">
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-images"></i></span>
+                    <span class="text">Portfolio</span>
+                </a>
+            </li>
+            <li class="list2">
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-phone"></i></span>
+                    <span class="text">Contact</span>
+                </a>
+            </li>
+            <div class="indicator"></div>
+        </ul>
+    </div>
+
     <script>
         // add active class on hovered item
         let List = document.querySelectorAll('li');
@@ -73,6 +115,13 @@
                 bg.style.backgroundColor = color;
             })
         })
+
+        const list = document.querySelectorAll('.list2');
+        function activeLink () {
+            list.forEach((item) => item.classList.remove('active'));
+            this.classList.add('active');
+        }
+        list.forEach((item) => item.addEventListener('click', activeLink));
     </script>
 </body>
 </html>

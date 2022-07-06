@@ -19,24 +19,22 @@ ul {
 ul li {
     position: relative;
     list-style: none;
-    width: 200px;
+    width: 150px;
     background: #3e3f46;
     padding: 15px;
     z-index: var(--i);
     transition: 0.5s;
+    z-index: calc(1 * var(--i));
 }
-/* ul li:hover {
-    background: #33a3ee;
-    transform: translateX(-50px);
-} */
+ul li:hover {
+    background: var(--clr);
+}
 ul li:nth-child(odd):hover {
-    transition: 1s;
-    background: #33a3ee;
+    /* transition: 1s; */
     transform: translateX(-50px);
 }
 ul li:nth-child(even):hover {
-    transition: 1.5s;
-    background: #33a3ee;
+    transition: 1s;
     transform: translateX(50px);
 }
 ul li::before {
@@ -52,7 +50,8 @@ ul li::before {
     transition: 0.5s;
 }
 ul li:hover::before {
-    background: #1f5378;
+    background: var(--clr);
+    filter: brightness(0.7);
 }
 ul li::after {
     content: '';
@@ -67,7 +66,8 @@ ul li::after {
     transition: 0.5s;
 }
 ul li:hover::after {
-    background: #2982b9;
+    background: var(--clr);
+    filter: brightness(0.9);
 }
 ul li a {
     text-decoration: none;
@@ -83,3 +83,18 @@ ul li:hover a {
 ul li:last-child::after {
     box-shadow: -120px 120px 20px rgba(0, 0, 0, 0.25);
 }
+ul li span {
+    position: absolute;
+    top: 0;
+    left: -40px;
+    width: 40px;
+    height: 100%;
+    transform-origin: right;
+    transform: skewY(45deg);
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25em;
+}
+ul li:hover span {}
