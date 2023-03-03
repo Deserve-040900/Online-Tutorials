@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazing Working Analog and Digital Clock</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="main.js"></script> -->
+</head>
+<body>
+    <div class="container" onload="loading();">
+        <div class="clock">
+
+            <div class="circle second" style="--clr:#04fc43;"><i></i></div>
+            <div class="circle minute" style="--clr:#fee800;"><i></i></div>
+            <div class="circle hour" style="--clr:#ff2972;"><i></i></div>
+
+            <span style="--i:1;"><b>1</b></span>
+            <span style="--i:2;"><b>2</b></span>
+            <span style="--i:3;"><b>3</b></span>
+            <span style="--i:4;"><b>4</b></span>
+            <span style="--i:5;"><b>5</b></span>
+            <span style="--i:6;"><b>6</b></span>
+            <span style="--i:7;"><b>7</b></span>
+            <span style="--i:8;"><b>8</b></span>
+            <span style="--i:9;"><b>9</b></span>
+            <span style="--i:10;"><b>10</b></span>
+            <span style="--i:11;"><b>11</b></span>
+            <span style="--i:12;"><b>12</b></span>
+
+        </div> <!-- 11:17 -->
+
+        <section>
+            <div id="calendar" class="calendar">
+                <div id="date" class="date"></div>
+            </div>
+
+            <div id="MyClockDisplay" class="watch" onload="showTime()"></div>
+        </section>
+    </div>
+
+    <script>
+        function loading()
+        {
+            alert("Lịch Vạn Niên xin chào! Chúc bạn Nhiều sức khỏe và thành Công trong cuộc sống.");
+
+            // if (h>3 && h<=9)
+            //     document.getElementById("cauchao").innerHTML =
+            //     "Chào buổi sáng ! Bỏ ăn Sáng thì không tốt cho sức khỏe xíu nào.";
+            // else if (h>9 && h<=14)
+            //     document.getElementById("cauchao").innerHTML = 
+            //     "Chào buổi trưa ! Bạn đã ăn Trưa chưa, nhớ nghỉ ngơi đúng giờ nhé.";
+            // else if (h>14 && h<=18)
+            //     document.getElementById("cauchao").innerHTML =
+            //     "Chào buổi chiều ! Bạn nên ăn cơm trước 18h Tối nhoa.";
+            // else
+            //     document.getElementById("cauchao").innerHTML =
+            //     "Chào buổi tối ! Ăn khuya sẽ khiến bạn Tăng cân đóa.";
+
+            // Hiển thị ra trình duyệt
+            // document.getElementById('thu').innerHTML = week(D);
+            // document.getElementById('day').innerHTML = checkTime(d);
+            // document.getElementById('month').innerHTML = "Tháng " + checkTime(M);
+            // document.getElementById('year').innerHTML = y;
+
+            document.getElementById('date').innerHTML = week(D) + " ngày " + checkTime(d) + " Tháng " + checkTime(M) + " năm " + y;
+            showTime();
+        }
+
+        // Lấy Object ngày hiện tại
+        var today = new Date();
+
+        // Giờ, phút, giây hiện tại
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        var ms = today.getMilliseconds();
+
+        // Chuyển đổi sang dạng 01, 02, 03
+        h = checkTime(h);
+        m = checkTime(m);
+        s = checkTime(s);
+
+        // thứ, ngày, tháng, năm hiện tại
+        var d = today.getDate();
+        var M = today.getMonth() + 1;
+        var y = today.getFullYear();
+
+        var D = new Date(y, M-1, d);
+
+        // Dùng hàm setTimeout để thiết lập gọi lại 0.5 giây / lần
+        var t = setTimeout(function() {
+            startTime();
+        }, 500);
+
+        // Hàm này có tác dụng chuyển những số bé hơn 10 thành dạng 01, 02, 03, ...
+        function checkTime(i) 
+        {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+        function week(d)
+		{
+			var thu="";
+			switch (d.getDay())
+			{
+				case 0: thu="Chủ nhật"; break;
+				case 1: thu="Thứ hai"; break;
+				case 2: thu="Thứ ba"; break;
+				case 3: thu="Thứ tư"; break;
+				case 4: thu="Thứ năm"; break;
+				case 5: thu="Thứ sáu"; break;
+				case 6: thu="Thứ bảy"; break;
+			}
+			return thu;
+		}
+
+        function showTime(){
+            var session = "AM";
+            
+            if(h > 12){
+                session = "PM";
+                if(s >= 59) {
+                    s = s - 59;
+                    m++;
+                    if(m >= 59) {
+                        m = m - 59;
+                        h++;
+                    }else { m++; }
+                }else { s++; }
+            }
+            
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+            
+            var time = h + ":" + m + ":" + s + " " + session;
+            document.getElementById("MyClockDisplay").innerText = time;
+            document.getElementById("MyClockDisplay").textContent = time;
+            
+            setTimeout(showTime, 970);            
+        }
+    </script>
+</body>
+</html>
